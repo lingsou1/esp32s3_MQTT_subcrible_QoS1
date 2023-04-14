@@ -29,6 +29,8 @@ PubSubClient mqttClient(wifiClient);  //根据WiFiClient来建立PubSubClient对
 
 
 const char* mqttServer = "test.ranye-iot.net";  //这是需要连接的MQTT服务器的网址,可更改
+
+//这是使用QOS的设置
 const int subQoS = 1;     // 客户端订阅主题时使用的QoS级别（截止2020-10-07，仅支持QoS = 1，不支持QoS = 2）
 const bool cleanSession = false; // 清除会话（如QoS>0必须要设为false）
  
@@ -77,7 +79,7 @@ void wifi_multi_init(void)
 
 
 /**
-* @brief 订阅相关的主题(一共订阅了3个主题),一个普通主题,一个使用单级通配符,一个使用多级通配符
+* @brief 订阅相关的主题(一共订阅了3个主题),一个普通主题(仅该主题使用QOS1),一个使用单级通配符,一个使用多级通配符
 *
 * @param 无
 * @return 无
@@ -137,7 +139,7 @@ void subscribleTopic(){
 
 
 /**
-* @brief 生成客户端名称并连接服务器同时订阅主题并串口输出数据
+* @brief 生成客户端名称并连接服务器同时订阅主题并串口输出数据(使用QOS1)
 *
 * @param 无
 * @return 无
